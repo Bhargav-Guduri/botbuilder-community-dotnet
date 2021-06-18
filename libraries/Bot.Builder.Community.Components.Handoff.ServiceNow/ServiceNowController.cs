@@ -46,8 +46,7 @@ namespace Bot.Builder.Community.Components.Handoff.ServiceNow
 
                 if (responseMessage != null)
                 {
-                    // Do we have a matching handoff record for the incoming ConversationID from ServiceNow?
-                    
+                    // Do we have a matching handoff record for the incoming ConversationID from ServiceNow?                    
                     var handoffRecord = await ConversationHandoffRecordMap.GetByRemoteConversationId(responseMessage.clientSessionId) as ServiceNowHandoffRecord;
                     if (handoffRecord != null)
                     {
@@ -200,9 +199,9 @@ namespace Bot.Builder.Community.Components.Handoff.ServiceNow
                                 {new CardAction("openUrl", item.label, value: bodyValue.action)});
                         responseActivity = MessageFactory.Attachment(linkHeroCard.ToAttachment());
 
-                        if (!string.IsNullOrEmpty(item.promptMsg))
+                        if (!string.IsNullOrEmpty(item.label))
                         {
-                            responseActivity.AsMessageActivity().Text = item.promptMsg;
+                            responseActivity.AsMessageActivity().Text = item.label;
                         }
 
                         break;
